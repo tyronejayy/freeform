@@ -56,7 +56,7 @@
 
     
 <?php
-//user.php file variables declared ... 
+    //user.php file variables declared ... 
     $servername = "localhost";
     $username = "jan";
     $password = "janspass";
@@ -64,7 +64,7 @@
 ?>
 
 <?php
-//connect.php file
+    //connect.php file
     include_once 'user.php';
 
     //create connection
@@ -96,7 +96,7 @@
     }
 
     mysqli_close($conn)
-
+    
 ?>
 
 <?php
@@ -107,9 +107,39 @@
     VALUES ('Escape from New York', 'John Carpenter', '1981')";
 
     if (mysqli_query($conn, $sql)) {
-        echo '<br>New record for table, film, created successfully. You may now select an entry for <a href="disp.php">display</a>.';
+    echo '<br>New record for table, film, created successfully. You may now select an entry for <a href="disp.php">display</a>.';
     } else {
-        echo "Error: " . $sql . $sql . <br> . mysqli_error($conn);
+    echo "Error: " . $sql . $sql . <br> . mysqli_error($conn);
     }
 
 ?>
+
+<?php
+
+    //NB path
+    require_once 'connect.php';
+
+    if (isset($_POST['add'])) {
+        $listText = $_POST['add'];
+        $sql = "INSERT INTO list_items (ListText)
+        VALUES ('$listText')";
+
+        //Execute query and validate success
+        if ($db_server->query($sql)) {
+        } else {
+            echo "Error: " . $sql . "<br>" . $db_server->error;
+        }
+    }
+
+    //while works similar to for loop but you only need a conditional that evaluates to true as its looped through resource
+
+?>
+
+require_once and connect to the database
+
+
+if ($db_server->connect_error) {
+    die("Connection failed")
+}
+
+db_server or conn aiya !!!
